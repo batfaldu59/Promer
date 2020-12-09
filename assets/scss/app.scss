@@ -1,16 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 
-header {
-  display: flex;
-}
 
 main {
-  height: 300px;
+  height: 350px;
 }
 
 footer {
   background-color: #DDDDDD;
-
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 
