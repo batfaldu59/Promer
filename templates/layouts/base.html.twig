@@ -8,8 +8,9 @@
         {% endblock %}
     </head>
     <body>
+
         {{ include('layouts/partials/_header.html.twig') }}
-        <main role="main" class="container mt-5">
+        <main role="main" class="mt-5">
             {% block body %}{% endblock %}
         </main>
         {{ include('layouts/partials/_footer.html.twig') }}
