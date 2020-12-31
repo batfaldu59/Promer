@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2 class="text-center mb-3">Inscription</h2>
+            <hr>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <br>
+            <input type="submit" value="S'inscrire">
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
