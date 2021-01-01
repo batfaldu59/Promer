@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/inscription", name="account")
+     * @Route("/inscription", name="app_signup")
      */
     public function index(Request $req, UserPasswordEncoderInterface $encoder, EntityManagerInterface $em): Response
     {
@@ -53,7 +53,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/deconnection", name="app_logout")
+     * @Route("/deconnexion", name="app_logout")
      */
     public function logout()
     {

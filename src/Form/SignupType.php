@@ -22,46 +22,47 @@ class SignupType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Vos mot de passe ne corespondent pas',
+                'invalid_message' => 'Vos mots de passe ne corespondent pas !',
                 'required' => false,
-                'first_options' => ['label' => 'Votre mot de passe'],
-                'second_options' => ['label' => 'Confirmez votre mot de passe']
+                'label' => 'Mot de passe',
+                'first_options' => ['label' => 'Tapez le mot de passe'],
+                'second_options' => ['label' => 'Confirmez le mot de passe']
             ])
             ->add('nom', TextType::class, [
-                'label' => "Nom de l'entreprise"
+                'label' => "Nom"
             ])
             ->add('numsiret', IntegerType::class, [
-                'label' => "Numéro de siret de l'entreprise"
+                'label' => "Numéro de siret"
             ])
             ->add('telephone', IntegerType::class, [
-                'label' => "Tékeohone de l'entreprise"
+                'label' => "Téléphone"
             ])
             ->add('fax', IntegerType::class, [
-                'label' => "fax de l'entreprise"
+                'label' => "Fax"
             ])
             ->add('statutjuridique', TextType::class, [
-                'label' => "Statut juridique de l'entreprise"
+                'label' => "Statut juridique"
             ])
             ->add('codeAPE', TextType::class, [
-                'label' => "Code APE de l'entreprise"
+                'label' => "Code APE"
             ])
             ->add('numVoie', IntegerType::class, [
-                'label' => "Numéro de voie de l'entreprise"
+                'label' => "Numéro de voie"
             ])
             ->add('rue', TextType::class, [
-                'label' => "Nom de rue de l'entreprise"
+                'label' => "Nom de voie"
             ])
             ->add('complementadresse', TextType::class, [
-                'label' => "Complément de rue de l'entreprise"
+                'label' => "Compl. d'adresse"
             ])
             ->add('codepostal', IntegerType::class, [
-                'label' => "cp de l'entreprise"
+                'label' => "Code postal"
             ])
             ->add('ville', TextType::class, [
-                'label' => "Ville de l'entreprise"
+                'label' => "Ville"
             ])
             ->add('pays', TextType::class, [
-                'label' => "Pays de l'entreprise"
+                'label' => "Pays"
             ])
         ;
     }
