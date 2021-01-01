@@ -36,7 +36,7 @@ class AccountController extends AbstractController
     }
 
     /**
-     * @Route("/connection", name="app_login")
+     * @Route("/connexion", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
