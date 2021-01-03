@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use App\Form\ChangeInformationsType;
 use App\Form\SignupType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
@@ -67,4 +68,31 @@ class AccountController extends AbstractController
     {
         return $this->render('account/login.html.twig');
     }
+
+    /**
+     * @Route("/compte/modifications-informations", name="app_modifications")
+     */
+    public function modifications(Request $req, UserPasswordEncoderInterface $encoder, EntityManagerInterface $em)
+    {
+        $notification = null;
+        $entreprise = $this->getUser();
+        $form = $this->createForm(ChangeInformationsType::class, $entreprise);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $old_message = $form->get('old_password')->getData();
+            if ($encoder->isPasswordValid($entreprise, $old_message)) {
+                $new_password = $form->get('new_password')->getData();
+                $password = $encoder->encodePassword($entreprise, $new_password);
+                $entreprise->setPassword($password);
+                $em->flush();
+                $notification = 'Mot de passe changé';
+            }
+        }
+        return $this->render('account/modifications.html.twig', [
+            'form' => $form->createView(),
+            'notification' => $notification
+        ]);
+    }
+
+
 }
