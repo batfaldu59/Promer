@@ -1,15 +1,125 @@
 {% extends 'layouts/base.html.twig' %}
 
+{% block title %}S'inscrire{% endblock %}
+
 {% block body %}
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <h2 class="text-center mb-3">Inscription</h2>
-            <hr>
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <br>
-            <input type="submit" value="S'inscrire">
-            {{ form_end(form) }}
+    <h2 class="text-center mb-3">Inscription</h2>
+    {{ form_start(form) }}
+    
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.email) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.email) }}
         </div>
     </div>
+    {{ form_errors(form.email) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.nom) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.nom) }}
+        </div>
+    </div>
+    {{ form_errors(form.nom) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.numsiret) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.numsiret) }}
+        </div>
+    </div>
+    {{ form_errors(form.numsiret) }}
+
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.telephone) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.telephone) }}
+        </div>
+    </div>
+    {{ form_errors(form.telephone) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.fax) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.fax) }}
+        </div>
+    </div>
+    {{ form_errors(form.fax) }}
+    
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.statutjuridique) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.statutjuridique) }}
+        </div>
+    </div>
+    {{ form_errors(form.statutjuridique) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.codeAPE) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.codeAPE) }}
+        </div>
+    </div>
+    {{ form_errors(form.codeAPE) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.numVoie) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.numVoie) }}
+        </div>
+    </div>
+    {{ form_errors(form.numVoie) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.rue) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.rue) }}
+        </div>
+    </div>
+    {{ form_errors(form.rue) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.complementadresse) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.complementadresse) }}
+        </div>
+    </div>
+    {{ form_errors(form.complementadresse) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.codepostal) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.codepostal) }}
+        </div>
+    </div>
+    {{ form_errors(form.codepostal) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.ville) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.ville) }}
+        </div>
+    </div>
+    {{ form_errors(form.ville) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.pays) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.pays) }}
+        </div>
+    </div>
+    {{ form_errors(form.pays) }}
+
+    <div class="form-group row">
+        <div class="col-sm-2 mt-1">{{ form_label(form.password) }}</div>
+        <div class="col-sm-10">
+            {{ form_widget(form.password) }}
+        </div>
+    </div>
+    {{ form_errors(form.password) }}
+
+    <br>
+    <button class="btn btn-primary" type="submit">S'inscrire</button>
+    {{ form_end(form) }}
 {% endblock %}
