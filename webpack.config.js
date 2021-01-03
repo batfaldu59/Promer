@@ -66,9 +66,9 @@ Encore
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
 
-// uncomment if you use API Platform Admin (composer require api-admin)
+// uncomment if you use API Platform Admin (composer require api-Admin)
 //.enableReactPreset()
-//.addEntry('admin', './assets/admin.js')
+//.addEntry('Admin', './assets/Admin.js')
 
     .copyFiles({
         from: './assets/img',
