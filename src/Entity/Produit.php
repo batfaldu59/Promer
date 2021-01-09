@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  * @ORM\Table(name="Produits")
@@ -108,6 +110,8 @@ class Produit
      */
     private $imageProduit;
 
+
+
     /**
      * @ORM\Column(type="string", length=50)
      */
@@ -122,6 +126,17 @@ class Produit
      * @ORM\Column(type="integer")
      */
     private $prixPalette;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 
     public function getId(): ?int
     {
@@ -139,6 +154,8 @@ class Produit
 
         return $this;
     }
+
+
 
     public function getDescription(): ?string
     {
@@ -344,6 +361,8 @@ class Produit
         return $this;
     }
 
+
+
     public function getNomChimique(): ?string
     {
         return $this->nomChimique;
@@ -376,6 +395,30 @@ class Produit
     public function setPrixPalette(int $prixPalette): self
     {
         $this->prixPalette = $prixPalette;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
