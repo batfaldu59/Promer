@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+            <div class="col-md-7">
+                <h3>{{ product.nom }}</h3>
+                <div class="product-item text-center">
+                    <img src="/uploads/{{ product.imageProduit }}" alt="{{ product.nom }}" height="10px" class="img-fluid">
+                </div>
+                <div class="poids">
+                    <p><span>Poids brut :</span>{{ product.poidsBrut }} - <span>Poids net :</span>{{ product.poidsNet }} </p>
+
+                </div>
+                <h5>Composition</h5>
+                <hr>
+                <p>{{ product.composition }}</p>
+                <h5>Conditionnement</h5>
+                <hr>
+                <p>{{ product.conditionnement }}</p>
+            </div>
+            <div class="col-md-4">
+                <div class="prix" >
+                    <p><span>Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span>Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
+                </div>
+                <h5>Description</h5>
+                <hr>
+                <p>{{ product.description }}</p><br>
+                <h5>Mode d'emplois</h5>
+                <hr>
+                <p>{{ product.modEmploi }}</p>
+                <h5>Précaution d'emploi</h5>
+                <p>{{ product.precautionEmploi }}</p>
+            </div>
+        </div>
+{% endblock %}
+

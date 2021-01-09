@@ -72,7 +72,7 @@ Encore
 
     .copyFiles({
         from: './assets/img',
-        to: '[path][name].[randomhash].[extension]',
+        to: '[path][name].[hash:8].[ext]',
         context: './assets'
     })
 ;
