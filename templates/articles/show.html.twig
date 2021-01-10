@@ -17,13 +17,16 @@
                 <h5>Composition</h5>
                 <hr>
                 <p>{{ product.composition }}</p>
-                <h5>Conditionnement</h5>
+                <h5>Conditionnement : {{ product.conditionnement }}</h5>
                 <hr>
-                <p>{{ product.conditionnement }}</p>
+                <h5>Densité : {{ product.densite }}</h5>
+
             </div>
             <div class="col-md-4">
                 <div class="prix" >
-                    <p><span>Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span>Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
+                    <p><span style="font-weight: bold; font-size: 15px">Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span style="font-weight: bold; font-size: 15px">Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
+                    <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité Colis :</span>{{ product.nbUniteColis }}</p>
+                    <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité palette :</span>{{ product.nbUnitePalette }}</p>
                 </div>
                 <h5>Description</h5>
                 <hr>
