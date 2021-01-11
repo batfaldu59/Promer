@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
+use App\Classe\Search;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Doctrine\Persistence\ManagerRegistry;
+use http\QueryString;
 
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +20,26 @@ class ProduitRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produit::class);
+    }
+
+    public function findWithSearch(Search $search) {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+            ->join('p.categorie', 'c');
+
+        if (!empty($search->categories)) {
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+        if (!empty($search->string)) {
+            $query = $query
+                ->andWhere('p.nom LIKE :string')
+                ->setParameter('string', "%{$search->string}%");
+        }
+        return $query->getQuery()->getResult();
     }
 
     // /**
