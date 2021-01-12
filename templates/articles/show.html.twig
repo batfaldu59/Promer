@@ -8,36 +8,66 @@
             <div class="col-md-7">
                 <h3>{{ product.nom }}</h3>
                 <div class="product-item text-center">
-                    <img src="/uploads/{{ product.imageProduit }}" alt="{{ product.nom }}" height="10px" class="img-fluid">
+                    <img src="/uploads/{{ product.imageProduit }}" alt="{{ product.nom }}" height="7px" class="img-fluid">
                 </div>
-                <div class="poids">
-                    <p><span>Poids brut :</span>{{ product.poidsBrut }} - <span>Poids net :</span>{{ product.poidsNet }} </p>
-
+                <div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p style="font-size: 14px;">
+                                {% if app.user  %}
+                                Prix colis : {{ product.prixColis/100|number_format(2) }} €<br />
+                                {% endif %}
+                                Conditionnement : {{ product.conditionnement }}<br />
+                                Référence : {{ product.reference }}<br />
+                                Nombre d'unités par colis : {{ product.nbUniteColis }}<br />
+                                Nombre d'unités par palette : {{ product.nbUnitePalette }}<br />
+                                Densité : {{ product.densite }}<br />
+                                pH : {{ product.ph }}<br />
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p style="font-size: 14px;">
+                                {% if app.user  %}
+                                Prix palette : {{ product.prixPalette/100|number_format(2) }} €<br />
+                                {% endif %}
+                                Poids brut : {{ product.poidsBrut }} kg<br />
+                                Poids net : {{ product.poidsNet }} kg<br />
+                                Dimensions produit : {{ product.dimensionUniteProduit }}<br />
+                                Dimensions colis : {{ product.dimensionUniteColis }}<br />
+                                Dimensions palette : {{ product.dimensionPalette }}<br />
+                                Couleur : {{ product.couleur }}<br />
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <br />
                 <h5>Composition</h5>
                 <hr>
                 <p>{{ product.composition }}</p>
-                <h5>Conditionnement : {{ product.conditionnement }}</h5>
-                <hr>
-                <h5>Densité : {{ product.densite }}</h5>
-
             </div>
             <div class="col-md-4">
+<<<<<<< HEAD
                 <div class="prix" >
                     <p><span style="font-weight: bold; font-size: 15px">Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span style="font-weight: bold; font-size: 15px">Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
                     <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
                     <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité Colis :</span>{{ product.nbUniteColis }}</p>
                     <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité palette :</span>{{ product.nbUnitePalette }}</p>
                 </div>
+=======
+>>>>>>> 40a733b726224525abf9857d4fcfe674f0be38c3
                 <h5>Description</h5>
                 <hr>
-                <p>{{ product.description }}</p><br>
-                <h5>Mode d'emplois</h5>
+                <p>{{ product.description }}</p>
+                <br />
+                <h5>Mode d'emploi</h5>
                 <hr>
                 <p>{{ product.modEmploi }}</p>
-                <h5>Précaution d'emploi</h5>
+                <br />
+                <h5>Précautions d'emploi</h5>
+                <hr>
                 <p>{{ product.precautionEmploi }}</p>
             </div>
+            <p><i>* Photo non contractuelle</i></p>
         </div>
 {% endblock %}
 
