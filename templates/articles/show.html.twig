@@ -25,6 +25,7 @@
             <div class="col-md-4">
                 <div class="prix" >
                     <p><span style="font-weight: bold; font-size: 15px">Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span style="font-weight: bold; font-size: 15px">Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
+                    <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
                     <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité Colis :</span>{{ product.nbUniteColis }}</p>
                     <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité palette :</span>{{ product.nbUnitePalette }}</p>
                 </div>
