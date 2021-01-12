@@ -12,57 +12,78 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SignupType extends AbstractType
+class ChangeInformationsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email'
+                'label' => 'Adresse email',
+                'disabled' => true
             ])
-            ->add('password', RepeatedType::class, [
+            ->add('old_password', PasswordType::class, [
+                'label' => 'Ancien mot de passe',
+                'mapped' => false,
+                'attr' => [
+                    'placeholder' => 'Veuillez entrer votre ancien mot de passe'
+                ]
+            ])
+            ->add('new_password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Vos mots de passe ne corespondent pas !',
                 'required' => true,
+                'mapped' => false,
                 'label' => 'Mot de passe',
-                'first_options' => ['label' => 'Tapez le mot de passe'],
-                'second_options' => ['label' => 'Confirmez le mot de passe']
+                'first_options' => ['label' => 'Tapez votre noouveau mot de passe'],
+                'second_options' => ['label' => 'Confirmez votre nouveau mot de passe']
             ])
             ->add('nom', TextType::class, [
-                'label' => "Nom"
+                'label' => "Nom",
+                'disabled' => true
             ])
             ->add('numsiret', IntegerType::class, [
-                'label' => "Numéro de siret"
+                'label' => "Numéro de siret",
+                'disabled' => true
             ])
             ->add('telephone', IntegerType::class, [
-                'label' => "Téléphone"
+                'label' => "Téléphone",
+                'disabled' => true
             ])
             ->add('fax', IntegerType::class, [
-                'label' => "Fax"
+                'label' => "Fax",
+                'disabled' => true
             ])
             ->add('statutjuridique', TextType::class, [
-                'label' => "Statut juridique"
+                'label' => "Statut juridique",
+                'disabled' => true
             ])
             ->add('codeAPE', TextType::class, [
-                'label' => "Code APE"
+                'label' => "Code APE",
+                'disabled' => true
             ])
             ->add('numVoie', IntegerType::class, [
-                'label' => "Numéro de voie"
+                'label' => "Numéro de voie",
+                'disabled' => true
             ])
             ->add('rue', TextType::class, [
-                'label' => "Nom de voie"
+                'label' => "Nom de voie",
+                'disabled' => true
             ])
             ->add('complementadresse', TextType::class, [
-                'label' => "Compl. d'adresse"
+                'label' => "Compl. d'adresse",
+                'disabled' => true
             ])
             ->add('codepostal', IntegerType::class, [
-                'label' => "Code postal"
+                'label' => "Code postal",
+                'disabled' => true
             ])
             ->add('ville', TextType::class, [
-                'label' => "Ville"
+                'label' => "Ville",
+                'disabled' => true
             ])
             ->add('pays', TextType::class, [
-                'label' => "Pays"
+                'label' => "Pays",
+                'disabled' => true
             ]);
     }
 
