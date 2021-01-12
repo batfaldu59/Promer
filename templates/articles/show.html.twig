@@ -5,54 +5,55 @@
 {% block body %}
 
     <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <h3>{{ product.nom }}</h3>
                 <div class="product-item text-center">
                     <img src="/uploads/{{ product.imageProduit }}" alt="{{ product.nom }}" height="7px" class="img-fluid">
                 </div>
+                <br />
                 <div>
                     <div class="row">
-                        <div class="col-md-5">
-                            <p style="font-size: 14px;">
-                                {% if app.user  %}
-                                Prix colis : {{ product.prixColis/100|number_format(2) }} €<br />
-                                {% endif %}
-                                Conditionnement : {{ product.conditionnement }}<br />
-                                Référence : {{ product.reference }}<br />
-                                Nombre d'unités par colis : {{ product.nbUniteColis }}<br />
-                                Nombre d'unités par palette : {{ product.nbUnitePalette }}<br />
-                                Densité : {{ product.densite }}<br />
-                                pH : {{ product.ph }}<br />
-                            </p>
-                        </div>
                         <div class="col-md-4">
                             <p style="font-size: 14px;">
                                 {% if app.user  %}
-                                Prix palette : {{ product.prixPalette/100|number_format(2) }} €<br />
+                                <b>Prix colis :</b> {{ product.prixColis/100|number_format(2) }} €<br />
                                 {% endif %}
-                                Poids brut : {{ product.poidsBrut }} kg<br />
-                                Poids net : {{ product.poidsNet }} kg<br />
-                                Dimensions produit : {{ product.dimensionUniteProduit }}<br />
-                                Dimensions colis : {{ product.dimensionUniteColis }}<br />
-                                Dimensions palette : {{ product.dimensionPalette }}<br />
-                                Couleur : {{ product.couleur }}<br />
+                                <b>Conditionnement :</b> {{ product.conditionnement }}<br />
+                                <b>Référence :</b> {{ product.reference }}<br />
+                                <b>Unités par colis :</b> {{ product.nbUniteColis }}<br />
+                                <b>Unités par palette :</b> {{ product.nbUnitePalette }}<br />
+                                <b>Densité :</b> {{ product.densite }}<br />
+                                <b>pH :</b> {{ product.ph }}<br />
+                            </p>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <p style="font-size: 14px;">
+                                {% if app.user  %}
+                                <b>Prix palette :</b> {{ product.prixPalette/100|number_format(2) }} €<br />
+                                {% endif %}
+                                <b>Poids brut :</b> {{ product.poidsBrut }} kg<br />
+                                <b>Poids net :</b> {{ product.poidsNet }} kg<br />
+                                <b>Dimensions produit :</b> {{ product.dimensionUniteProduit }}<br />
+                                <b>Dimensions colis :</b> {{ product.dimensionUniteColis }}<br />
+                                <b>Dimensions palette :</b> {{ product.dimensionPalette }}<br />
+                                <b>Couleur :</b> {{ product.couleur }}<br />
                             </p>
                         </div>
                     </div>
                 </div>
                 <br />
+                <div>
+                    <center>
+                        <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
+                    </center>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <h5>Composition</h5>
                 <hr>
                 <p>{{ product.composition }}</p>
-            </div>
-            <div class="col-md-4">
-                <div class="prix" >
-                    <p><span style="font-weight: bold; font-size: 15px">Prix colis :</span>{{ product.prixColis/100|number_format(2) }} € - <span style="font-weight: bold; font-size: 15px">Prix palette :</span>{{ product.prixPalette/100|number_format(2) }} €</p>
-                    <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-primary">Ajouter au panier</a>
-                    <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité Colis :</span>{{ product.nbUniteColis }}</p>
-                    <p><span style="font-weight: bold; font-size: 15px">Nombre d'unité palette :</span>{{ product.nbUnitePalette }}</p>
-                </div>
-
+                <br />
                 <h5>Description</h5>
                 <hr>
                 <p>{{ product.description }}</p>
