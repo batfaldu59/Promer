@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EntrepriseRepository::class)
@@ -20,6 +23,12 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 180,
+     *      minMessage = "Le mail doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le mail ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $email;
 
@@ -36,11 +45,22 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 25,
+     *      minMessage = "Le nom doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=14, unique=true)
+     * @Assert\Length(
+     *      min = 14,
+     *      max = 14,
+     *      exactMessage = "Un numéro de siret comporte {{ limit }} caractères."
+     * )
      */
     private $numsiret;
 
@@ -56,11 +76,21 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=4)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 4,
+     *      exactMessage = "Le code du statut juridique comporte {{ limit }} caractères."
+     * )
      */
     private $statutjuridique;
 
     /**
      * @ORM\Column(type="string", length=8, unique=true)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      exactMessage = "Un code APE comporte {{ limit }} caractères."
+     * )
      */
     private $codeAPE;
 
@@ -71,6 +101,12 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de rue doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de rue ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $rue;
 
@@ -86,6 +122,12 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 25,
+     *      minMessage = "Le nom de ville doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de ville ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $ville;
 
@@ -93,6 +135,22 @@ class Entreprise implements UserInterface
      * @ORM\Column(type="string", length=25)
      */
     private $pays;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Representant::class, mappedBy="entreprise")
+     */
+    private $representants;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="entreprise")
+     */
+    private $adresses;
+
+    public function __construct()
+    {
+        $this->representants = new ArrayCollection();
+        $this->adresses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -312,6 +370,66 @@ class Entreprise implements UserInterface
     public function setPays(string $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Representant[]
+     */
+    public function getRepresentants(): Collection
+    {
+        return $this->representants;
+    }
+
+    public function addRepresentant(Representant $representant): self
+    {
+        if (!$this->representants->contains($representant)) {
+            $this->representants[] = $representant;
+            $representant->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepresentant(Representant $representant): self
+    {
+        if ($this->representants->removeElement($representant)) {
+            // set the owning side to null (unless already changed)
+            if ($representant->getEntreprise() === $this) {
+                $representant->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Adresse[]
+     */
+    public function getAdresses(): Collection
+    {
+        return $this->adresses;
+    }
+
+    public function addAdress(Adresse $adress): self
+    {
+        if (!$this->adresses->contains($adress)) {
+            $this->adresses[] = $adress;
+            $adress->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdress(Adresse $adress): self
+    {
+        if ($this->adresses->removeElement($adress)) {
+            // set the owning side to null (unless already changed)
+            if ($adress->getEntreprise() === $this) {
+                $adress->setEntreprise(null);
+            }
+        }
 
         return $this;
     }

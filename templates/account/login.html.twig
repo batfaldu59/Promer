@@ -1,10 +1,10 @@
 {% extends 'layouts/base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <h1>Bienvenue {{ app.user.nom }}</h1>
-        </div>
-        <a href="{{ path('app_modifications') }}">Mettre à jour les informations du compte</a>
-    </div>
+    <h1>Mon compte</h1>
+    <p>Bienvenue {{ app.user.nom }} dans votre espace client !<br>
+    Ici, vous pouvez gérer vos informations personnelles.</p>
+    <hr>
+    - <a href="{{ path('app_modifications') }}">Mettre à jour votre mot de passe</a><br>
+    - <a href="{{ path('app_adresse') }}">Mettre à jour vos adresses de livraison</a>
 {% endblock %}
