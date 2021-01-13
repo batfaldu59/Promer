@@ -64,4 +64,12 @@ class CartController extends AbstractController
         $cart->decresse($id);
         return $this->redirectToRoute('app_cart');
     }
+
+    /**
+     * @Route("/voirpanier", name="app_panier")
+     */
+    public function monPanier(): Response
+    {
+        return $this->render('cart/monPanier.html.twig');
+    }
 }
