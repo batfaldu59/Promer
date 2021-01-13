@@ -18,6 +18,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AccountController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager) {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/inscription", name="app_signup")
      */
@@ -123,6 +129,45 @@ class AccountController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/compte/adresse/modifier{id}", name="app_adresse_upload")
+     */
+    public function upload(Request $req, $id)
+    {
+        $adresse = $this->entityManager->getRepository(Adresse::class)->findOneById($id);
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($req);
+        if (empty($adresse) || $adresse->getEntreprise() != $this->getUser()) {
+            return $this->redirectToRoute('app_adresse');
+        }
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+            return $this->redirectToRoute('app_adresse');
+        }
+        return $this->render('account/newadresse.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/compte/adresse/remove{id}", name="app_adresse_remove")
+     */
+    public function remove($id)
+    {
+        $adresse = $this->entityManager->getRepository(Adresse::class)->findOneById($id);
+        if ($adresse && $adresse->getEntreprise() == $this->getUser()) {
+            $this->entityManager->remove($adresse);
+            $this->entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_adresse');
+
+
+    }
+
 
 
 }
