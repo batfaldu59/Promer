@@ -30,6 +30,7 @@ class AccountController extends AbstractController
             $entreprise->setPassword($password);
             $em->persist($entreprise);
             $em->flush();
+            return $this->redirectToRoute('app_login');
         }
         return $this->render('account/index.html.twig', [
             'form' => $form->createView()
@@ -92,6 +93,14 @@ class AccountController extends AbstractController
             'form' => $form->createView(),
             'notification' => $notification
         ]);
+    }
+
+    /**
+     * @Route("/compte/adresse", name="app_adresse")
+     */
+    public function modifAdresse()
+    {
+        return $this->render('account/adresse.html.twig');
     }
 
 
