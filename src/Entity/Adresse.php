@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdresseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdresseRepository::class)
@@ -25,16 +26,34 @@ class Adresse
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "L'intitulé de l'adresse doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "L'intitulé de l'adresse ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le prénom de l'interlocuteur doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le prénom de l'interlocuteur ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le nom de l'interlocuteur doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de l'interlocuteur ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $lastname;
 
@@ -45,6 +64,12 @@ class Adresse
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le nom de rue doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de rue ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $rue;
 
@@ -60,6 +85,12 @@ class Adresse
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "Le nom de ville doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de ville ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $ville;
 

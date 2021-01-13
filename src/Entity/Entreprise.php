@@ -133,12 +133,6 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25)
-     * @Assert\Length(
-     *      min = 4,
-     *      max = 25,
-     *      minMessage = "Le nom de pays doit faire au moins {{ limit }} caractères.",
-     *      maxMessage = "Le nom de pays ne doit pas faire plus de {{ limit }} caractères."
-     * )
      */
     private $pays;
 

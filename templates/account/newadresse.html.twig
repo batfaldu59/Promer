@@ -3,75 +3,59 @@
 {% block title %}Ajouter une adresses de livraison{% endblock %}
 
 {% block body %}
-    <h1>Nouvel adresse</h1>
-    <a href="{{ path('app_compte') }}">Retour à mon compte</a>
+    <h1>Mes adresses</h1>
+    <a href="{{ path('app_compte') }}">Retourner mon espace client</a>
+    <br />
+    <br />
     <hr>
     {{ form_start(form) }}
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.nom) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.nom) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.nom) }}</div>
     </div>
     {{ form_errors(form.nom) }}
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.firstname) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.firstname) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.firstname) }}</div>
     </div>
     {{ form_errors(form.firstname) }}
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.lastname) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.lastname) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.lastname) }}</div>
     </div>
     {{ form_errors(form.lastname) }}
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.numrue) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.numrue) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.numrue) }}</div>
     </div>
     {{ form_errors(form.numrue) }}
 
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.rue) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.rue) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.rue) }}</div>
     </div>
     {{ form_errors(form.rue) }}
 
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.complementadresee) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.complementadresee) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.complementadresee) }}</div>
     </div>
     {{ form_errors(form.complementadresee) }}
 
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.codepostal) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.codepostal) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.codepostal) }}</div>
     </div>
     {{ form_errors(form.codepostal) }}
 
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.ville) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.ville) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.ville) }}</div>
     </div>
     {{ form_errors(form.ville) }}
     <div class="form-group row">
         <div class="col-sm-2 mt-1">{{ form_label(form.pays) }}</div>
-        <div class="col-sm-10">
-            {{ form_widget(form.pays) }}
-        </div>
+        <div class="col-sm-10">{{ form_widget(form.pays) }}</div>
     </div>
     {{ form_errors(form.pays) }}
     {{ form_end(form) }}

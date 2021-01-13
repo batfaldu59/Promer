@@ -17,54 +17,40 @@ class AdresseType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'Quel nom voulez vous donner à votre adresse',
-                'attr' => [
-                    'placeholder' => 'Nommez votre adresse'
-                ]
+                'label' => 'Intitulé',
+                'attr' => ['placeholder' => 'Intitulé de l\'adresse de livraison']
             ])
             ->add('firstname', TextType::class, [
-                'label' => 'Votre prénom',
-                'attr' => [
-                    'placeholder' => 'Entrez votre prénom'
-                ]
+                'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Prénom de l\'interlocuteur']
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Votre nom',
-                'attr' => [
-                    'placeholder' => 'Entrez votre nom'
-                ]
+                'label' => 'Nom',
+                'attr' => ['placeholder' => 'Nom de l\'interlocuteur']
             ])
             ->add('numrue', IntegerType::class, [
-                'label' => 'Votre numéro de voie'
+                'label' => 'Numéro de voie',
+                'attr' => ['placeholder' => 'Nom de voie de l\'adresse de livraison']
 
             ])
             ->add('rue', TextType::class, [
-                'label' => 'Votre nom de rue',
-                'attr' => [
-                    'placeholder' => 'Entrez votre nom de rue'
-                ]
+                'label' => 'Nom de voie',
+                'attr' => ['placeholder' => 'Nom de voie de l\'adresse de livraison']
             ])
             ->add('complementadresee', TextType::class, [
-                'label' => "Complément d'adresse"
-
+                'label' => "Compl. d'adresse",
+                'attr' => ['placeholder' => 'Complément d\'adresse de l\'adresse de livraison']
             ])
             ->add('codepostal', TextType::class, [
                 'label' => 'Code postal',
-                'attr' => [
-                    'placeholder' => 'Entrez votre code postal'
-                ]
+                'attr' => ['placeholder' => 'Code postal de l\'adresse de livraison']
             ])
             ->add('ville', TextType::class, [
                 'label' => 'Ville',
-                'attr' => [
-                    'placeholder' => 'Entrez votre ville'
-                ]
+                'attr' => ['placeholder' => 'Ville de l\'adresse de livraison']
             ])
             ->add('pays', CountryType::class, [
-                'label' => 'Pays',
-                'attr' => [
-                    'placeholder' => 'Entrez le nom de votre pays'
-                ]
+                'label' => 'Pays'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter une adresse'
