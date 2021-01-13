@@ -1,4 +1,4 @@
-{% include 'cart/index.html.twig'  %}
+
 <header class="d-flex mt-3 mb-3">
     <a class="ml-3 mt-1" href="{{ path('app_home') }}"><img src="{{ asset('build/img/logo.jpg') }}" alt="logo de Promer" height="40"></a>
     <h4 class="mx-auto mt-3"><i>« Nous vous promettons d'être les meilleurs ! »</i></h4>
@@ -26,12 +26,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ path('app_cart') }}"><img src="{{ asset('build/img/shopping-cart.png') }}" alt="mon panier"></a>
+            </li>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
             </li>
             {% endif %}
         </ul>
-        <a href="{{ path('app_cart') }}"><img src="{{ asset('build/img/shopping-cart.png') }}" alt="mon panier"></a>
     </div>
 </nav>
