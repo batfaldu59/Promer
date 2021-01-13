@@ -3,4 +3,15 @@
 {% block title %}Mes adresses de livraison{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_adresse_add') }}" class="btn btn-info btn-sm float-right">Ajouter une adresse</a>
+    <h1>Mes adresses</h1>
+    <p>C'est ici que vous pouvez gerer vos adresses</p><br>
+    <hr>
+    {% if app.user.adresses|length == 0%}
+        <b class="text-center">Vous n'avez pas ajouté d'adresse. Pour en ajouter une, <a href="{{ path('app_adresse_add') }}">cliquez ici</a></b>
+    {% else %}
+    {% endif %}
+    <br>
+    <a href="{{ path('app_compte') }}">Retour à mon compte</a>
 {% endblock %}
+

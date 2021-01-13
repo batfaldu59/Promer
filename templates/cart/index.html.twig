@@ -5,17 +5,18 @@
 {% block body %}
     <h1>Mon panier</h1>
     {% if cart|length > 0 %}
-    <p>Voici les produits que vous avez ajouté dans votre panier :</p>
+    <p>Retrouver les produits que vous avez ajouté dans votre panier</p>
     <table class="table mt-3">
         <thead>
         <tr>
-            <th scope="col">Produit</th>
+            <th scope="col">Produits</th>
             <th scope="col">Quantité</th>
             <th scope="col">Prix</th>
             <th scope="col">Total</th>
         </tr>
         </thead>
         <tbody>
+        {% set total = null %}
         {% for product in cart %}
         <tr>
             <th>
@@ -24,7 +25,7 @@
             </th>
             <td>
                 <a href="{{ path('decresse_my_product', {'id': product.product.id}) }}"><img src="{{ asset('build/img/moins.png') }}" alt="diminuer la quantité" height="20px"></a>
-                {{ product.quantity }}
+                X{{ product.quantity }}
                 <a href="{{ path('add_to_cart', {'id': product.product.id}) }}"><img src="{{ asset('build/img/plus.png') }}" alt="ajouter une quantité" height="20px"></a>
             </td>
             <td>{{ (product.product.prixColis)/100|number_format(2) }} €</td>
@@ -35,13 +36,13 @@
                 </a>
             </td>
         </tr>
+            {% set total = total + (product.product.prixColis * product.quantity)%}
         {% endfor %}
-        {{ total }}
         </tbody>
     </table>
     <hr>
     <div class="text-right mb-5">
-        <b>Nombre de produits différents :</b> {{ cart|length }}<br>
+        <b>Nombre de produit :</b> {{ cart|length }}<br>
         <b>Total de mon panier : {{ total/100|number_format(2) }} €</b>
         <a href="" class="btn btn-success btn-block mt-3">Valider mon panier</a>
     </div>

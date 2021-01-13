@@ -23,10 +23,8 @@ class CartController extends AbstractController
     public function index(Cart $cart): Response
     {
 
-        $total = 12;
         return $this->render('cart/index.html.twig', [
-            'cart' => $cart->getFull(),
-            'total' => $total
+            'cart' => $cart->getFull()
         ]);
     }
 
