@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EntrepriseRepository::class)
@@ -22,6 +23,12 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 180,
+     *      minMessage = "Le mail doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le mail ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $email;
 
@@ -38,11 +45,22 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 25,
+     *      minMessage = "Le nom doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=14, unique=true)
+     * @Assert\Length(
+     *      min = 14,
+     *      max = 14,
+     *      exactMessage = "Un numéro de siret comporte {{ limit }} caractères."
+     * )
      */
     private $numsiret;
 
@@ -58,11 +76,21 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=4)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 4,
+     *      exactMessage = "Le code du statut juridique comporte {{ limit }} caractères."
+     * )
      */
     private $statutjuridique;
 
     /**
      * @ORM\Column(type="string", length=8, unique=true)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      exactMessage = "Un code APE comporte {{ limit }} caractères."
+     * )
      */
     private $codeAPE;
 
@@ -73,6 +101,12 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Le nom de rue doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de rue ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $rue;
 
@@ -88,11 +122,23 @@ class Entreprise implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 25,
+     *      minMessage = "Le nom de ville doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de ville ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $ville;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 25,
+     *      minMessage = "Le nom de pays doit faire au moins {{ limit }} caractères.",
+     *      maxMessage = "Le nom de pays ne doit pas faire plus de {{ limit }} caractères."
+     * )
      */
     private $pays;
 

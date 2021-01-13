@@ -2,13 +2,9 @@
 
 {% block body %}
     <h1>Mon compte</h1>
-<<<<<<< HEAD
-    <p>Bonjour {{ app.user.nom }} dans votre compte <br>
-    C'est ici que vous pouvez gerer vos informations personnelles</p>
+    <p>Bienvenue {{ app.user.nom }} dans votre espace client !<br>
+    Ici, vous pouvez gérer vos informations personnelles.</p>
     <hr>
     - <a href="{{ path('app_modifications') }}">Mettre à jour votre mot de passe</a><br>
     - <a href="{{ path('app_adresse') }}">Mettre à jour vos adresses de livraison</a>
-=======
-    <p>Bonjour {{ app.user.nom }}</p>
->>>>>>> f2b6447a4a62ee5c022ff536f4e66cd8da23738b
 {% endblock %}
