@@ -25,8 +25,8 @@ class SignupType extends AbstractType
                 'invalid_message' => 'Vos mots de passe ne corespondent pas !',
                 'required' => true,
                 'label' => 'Mot de passe',
-                'first_options' => ['label' => 'Tapez le mot de passe'],
-                'second_options' => ['label' => 'Confirmez le mot de passe']
+                'first_options' => ['label' => 'Tapez le mot de passe*'],
+                'second_options' => ['label' => 'Confirmez le mot de passe*']
             ])
             ->add('nom', TextType::class, [
                 'label' => "Nom"
