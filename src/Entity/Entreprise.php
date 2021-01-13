@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -93,6 +95,22 @@ class Entreprise implements UserInterface
      * @ORM\Column(type="string", length=25)
      */
     private $pays;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Representant::class, mappedBy="entreprise")
+     */
+    private $representants;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Adresse::class, mappedBy="entreprise")
+     */
+    private $adresses;
+
+    public function __construct()
+    {
+        $this->representants = new ArrayCollection();
+        $this->adresses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -312,6 +330,66 @@ class Entreprise implements UserInterface
     public function setPays(string $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Representant[]
+     */
+    public function getRepresentants(): Collection
+    {
+        return $this->representants;
+    }
+
+    public function addRepresentant(Representant $representant): self
+    {
+        if (!$this->representants->contains($representant)) {
+            $this->representants[] = $representant;
+            $representant->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepresentant(Representant $representant): self
+    {
+        if ($this->representants->removeElement($representant)) {
+            // set the owning side to null (unless already changed)
+            if ($representant->getEntreprise() === $this) {
+                $representant->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Adresse[]
+     */
+    public function getAdresses(): Collection
+    {
+        return $this->adresses;
+    }
+
+    public function addAdress(Adresse $adress): self
+    {
+        if (!$this->adresses->contains($adress)) {
+            $this->adresses[] = $adress;
+            $adress->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdress(Adresse $adress): self
+    {
+        if ($this->adresses->removeElement($adress)) {
+            // set the owning side to null (unless already changed)
+            if ($adress->getEntreprise() === $this) {
+                $adress->setEntreprise(null);
+            }
+        }
 
         return $this;
     }

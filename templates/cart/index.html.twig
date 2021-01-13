@@ -16,7 +16,6 @@
         </tr>
         </thead>
         <tbody>
-        {% set total = null %}
         {% for product in cart %}
         <tr>
             <th>
@@ -36,8 +35,8 @@
                 </a>
             </td>
         </tr>
-            {% set total = total + (product.product.prixColis * product.quantity)%}
         {% endfor %}
+        {{ total }}
         </tbody>
     </table>
     <hr>
