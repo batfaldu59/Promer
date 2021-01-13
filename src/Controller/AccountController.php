@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Adresse;
 use App\Entity\Entreprise;
+use App\Form\AdresseType;
 use App\Form\ChangeInformationsType;
 use App\Form\SignupType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -101,6 +103,25 @@ class AccountController extends AbstractController
     public function modifAdresse()
     {
         return $this->render('account/adresse.html.twig');
+    }
+
+    /**
+     * @Route("/compte/adresse/ajouter-une-adresse", name="app_adresse_add")
+     */
+    public function add(Request $req, EntityManagerInterface $em)
+    {
+        $adresse = new Adresse();
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $adresse->setEntreprise($this->getUser());
+            $em->persist($adresse);
+            $em->flush();
+            return $this->redirectToRoute('app_adresse');
+        }
+        return $this->render('account/newadresse.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
 
