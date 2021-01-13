@@ -152,10 +152,16 @@ class Entreprise implements UserInterface
      */
     private $adresses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="entreprise")
+     */
+    private $commandes;
+
     public function __construct()
     {
         $this->representants = new ArrayCollection();
         $this->adresses = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -434,6 +440,36 @@ class Entreprise implements UserInterface
             // set the owning side to null (unless already changed)
             if ($adress->getEntreprise() === $this) {
                 $adress->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getEntreprise() === $this) {
+                $commande->setEntreprise(null);
             }
         }
 
