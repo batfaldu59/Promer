@@ -8,12 +8,33 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <b>Choisir mon adresse</b>
-            <b>Choisir mon transporteur</b>
+            <b>Choisir mon adresse</b><br>
+            {% set formHtml %}
+                {{ form_start(form, {action:path('app_panier_recap')}) }}
+                    {{ form_label(form.adresses, 'Choisissez votre adresse de livraison') }}
+                <a href="{{ path('app_adresse_add') }}">Ajouter une adresse</a>
+                {{ form_end(form) }}
+            {% endset %}
+            {{ formHtml|replace({'[br]': '<br/>'})|raw }}
         </div>
         <div class="col-md-6">
-            <b>Detail de ma commande</b>
-
+            <div class="text-center">
+                <b class="mb-3">Detail de ma commande</b>
+                <p>Voici le récapitulatif de vos produits</p>
+            </div>
+            {% for key,product in cart %}
+                <div class="row {% if key > 1 %}mt-3{% endif %}">
+                    <div class="col-2">
+                        <img src="/uploads/{{ product.product.imageProduit }}" alt="{{ product.product.nom }}" height="80px">
+                    </div>
+                    <div class="col-8 my-auto">
+                        <p>{{ product.product.nom }}</p>
+                    </div>
+                    <div class="col-2 my-auto">
+                        <b>x {{ product.quantity }}</b>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

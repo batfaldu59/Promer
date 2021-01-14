@@ -104,6 +104,11 @@ class Adresse
         return $this->id;
     }
 
+    public function __toString() {
+        return $this->getNom()."[br]".$this->getNumrue()." ".$this->getRue()."[br]".$this->getComplementadresee()
+            ."[br]".$this->getCodepostal()."[br]".$this->getVille()."-".$this->getPays();
+    }
+
     public function getEntreprise(): ?Entreprise
     {
         return $this->entreprise;

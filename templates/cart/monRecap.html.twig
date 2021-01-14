@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Paiement de ma commande{% endblock %}
+
+{% block body %}
+    <h1>Mon récapitulatif</h1>
+    <p>Verifiez vos informations avant de payer votre commande</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Mon adresse de livraison</strong><br>
+            <div class="form-check">
+                {{ delivry|raw }}
+            </div>
+            <hr>
+            <strong>Mon transporteur</strong><br>
+            <div class="form-check">
+                {{ transporteur.nom }}<br>
+                {{ transporteur.description }}<br>
+                {{ transporteur.prix|number_format(2) }} €
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b class="mb-3">Ma commande</b>
+            </div>
+            {% set total = null %}
+            {% for key,product in cart %}
+                <div class="row {% if key > 1 %}mt-3{% endif %}">
+                    <div class="col-2">
+                        <img src="/uploads/{{ product.product.imageProduit }}" alt="{{ product.product.nom }}" height="80px">
+                    </div>
+                    <div class="col-8 my-auto">
+                        <p>{{ product.product.nom }}<br>x{{ product.quantity }}</p>
+                    </div>
+                    <div class="col-2 my-auto">
+                        <b>{{ (product.product.prixColis * product.quantity)/100|number_format(2) }} €</b>
+                    </div>
+                </div>
+                {% set total = total + (product.product.prixColis * product.quantity) %}
+            {% endfor %}
+            <hr>
+            <strong>Sous-total : {{ total/100|number_format(2) }} €</strong><br>
+            <strong>Cout de la livraison : {{ transporteur.prix|number_format(2) }} €</strong>
+            <hr>
+            <strong>Total à payer : {{ ((total/100) + (transporteur.prix))|number_format(2) }} €</strong>
+            <a href="" class="btn btn-success btn-block mt-3">Payez | {{ ((total/100) + (transporteur.prix))|number_format(2) }} €</a>
+        </div>
+    </div>
+{% endblock %}

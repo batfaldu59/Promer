@@ -49,10 +49,26 @@ class Commande
      * @ORM\OneToMany(targetEntity=CommandeDetail::class, mappedBy="commande")
      */
     private $commandeDetails;
+    
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPaid;
 
     public function __construct()
     {
         $this->commandeDetails = new ArrayCollection();
+    }
+
+    public function getTotal() {
+        $total = null;
+
+        foreach ($this->getCommandeDetails()->getValues() as $product) {
+            $total = $total + ($product->getPrix() * $product->getQuantite());
+        }
+        return $total;
     }
 
     public function getId(): ?int
@@ -146,6 +162,18 @@ class Commande
                 $commandeDetail->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }
