@@ -44,7 +44,9 @@
             <strong>Cout de la livraison : {{ transporteur.prix|number_format(2) }} €</strong>
             <hr>
             <strong>Total à payer : {{ ((total/100) + (transporteur.prix))|number_format(2) }} €</strong>
-            <a href="" class="btn btn-success btn-block mt-3">Payez | {{ ((total/100) + (transporteur.prix))|number_format(2) }} €</a>
+            <hr>
+            {{ form(recap) }}
+            <a href="{{ path('remerciement') }}" class="btn btn-success btn-block mt-3">Payez | {{ ((total/100) + (transporteur.prix))|number_format(2) }} €</a>
         </div>
     </div>
 {% endblock %}

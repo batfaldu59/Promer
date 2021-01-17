@@ -7,7 +7,10 @@ use App\Entity\Commande;
 use App\Entity\CommandeDetail;
 use App\Entity\Produit;
 use App\Form\CommandeType;
+use App\Form\PaiementType;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -122,18 +125,37 @@ class CartController extends AbstractController
                 $commandeDetails->setProduit($product['product']->getNom());
                 $commandeDetails->setQuantite($product['quantity']);
                 $commandeDetails->setPrix($product['product']->getPrixColis());
-                $commandeDetails->setPrix($product['product']->getPrixColis());
                 $commandeDetails->setTotal(($product['product']->getPrixColis() + $product['quantity']));
                 $this->entityManager->persist($commandeDetails);
+
             }
+
             $this->entityManager->flush();
+            $recap = $this->createForm(PaiementType::class, null);
             return $this->render('cart/monRecap.html.twig', [
                 'cart' => $cart->getFull(),
                 'transporteur' => $transporteur,
-                'delivry' => $delivry_content
+                'delivry' => $delivry_content,
+                'recap' => $recap->createView()
             ]);
         }
         return $this->redirectToRoute("app_cart");
 
     }
+
+
+    /**
+     * @Route("/remerciement", name="remerciement")
+     */
+    public function remercie(Cart $cart): Response
+    {
+
+        $cart->remove();
+            return $this->render('cart/remerciement.html.twig', [
+                'cart' => $cart->getFull(),
+
+            ]);
+        }
+
+
 }
